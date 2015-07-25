@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     ventana->setLayout(layout);
     ventana->show();
 
-    obj->crono->start(100);
+    obj->crono->start(250);
 
     return a.exec();
 }

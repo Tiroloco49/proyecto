@@ -100,7 +100,9 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         diraux=2;
     }else
     if(swGde && swGab){//esquina inferior derecha
-        dir=rand()%3+6;
+        dir=rand()%4+6;
+        if(dir==9)
+            dir=1;
         diraux=3;
     }else
     if(swGab){//abajo
@@ -324,13 +326,13 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     }else
     if(xRat==0){//izquierda
 
-        if(swGiz && !swGde && !swGab && !swGar){//arriba
+        if(!swGiz && !swGde && !swGab && swGar){//arriba
             dir=rand()%3+3;
         }else
-        if(swGiz && !swGde && swGab && !swGar){//superior derecho
-            dir=rand()%2+3;
+        if(!swGiz && swGde && !swGab && swGar){//superior derecho
+            dir=rand()%2+4;
         }else
-        if(!swGiz && !swGde && swGab && !swGar){//derecha
+        if(!swGiz && swGde && !swGab && !swGar){//derecha
             dir=rand()%2;
             if(dir)
                 dir=1;
@@ -340,7 +342,7 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(!swGiz && swGde && swGab && !swGar){//inferior derecho
             dir=rand()%2+1;
         }else
-        if(!swGiz && swGde && !swGab && !swGar){//abajo
+        if(!swGiz && !swGde && swGab && !swGar){//abajo
             dir=rand()%3+1;
         }else
             if(xRat+1==xq && yRat+1==yq){//condicionales si esta entre el queso y la pared
@@ -362,25 +364,25 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     }else
     if(xRat==tam-1){//derecha
 
-        if(swGiz && !swGde && !swGab && !swGar){//arriba
+        if(!swGiz && !swGde && !swGab && swGar){//arriba
             dir=rand()%3+5;
         }else
-        if(swGiz && !swGde && swGab && !swGar){//superior izquierdo
+        if(swGiz && !swGde && !swGab && swGar){//superior izquierdo
             dir=rand()%2+5;
         }else
-        if(!swGiz && !swGde && swGab && !swGar){//izquierda
+        if(swGiz && !swGde && !swGab && !swGar){//izquierda
             dir=rand()%2;
             if(dir)
                 dir=1;
             else
                 dir=5;
         }else
-        if(!swGiz && swGde && swGab && !swGar){//inferior izquierdo
+        if(swGiz && !swGde && swGab && !swGar){//inferior izquierdo
             dir=rand()%2+8;
             if(dir==9)
                 dir=1;
         }else
-        if(!swGiz && swGde && !swGab && !swGar){//abajo
+        if(!swGiz && !swGde && swGab && !swGar){//abajo
             dir=rand()%3+7;
             if(dir==9)
                 dir=1;
@@ -404,7 +406,7 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     }
 
     //switch para moverse
-
+    //cout<<"raton:"<<dir<<endl;
     switch(dir){
 
     case 1:
@@ -447,7 +449,7 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
 
     if(xRat==xq && yRat==yq){//si se come el queso
 
-        //queso=1;
+        queso=1;
     }
 
 

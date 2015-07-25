@@ -188,6 +188,20 @@ void cat::mover(int y, int x, QImage **map, int tam){
         if(!swRde && !swRab && swRiz){//si el raton esta a la izquierda
             dir=4;
         }//else
+        if(swRde && swRab){
+            dir=rand()%2;
+            if(dir)
+                dir=4;
+            else
+                dir=2;
+        }
+        if(swRab && swRiz){
+            dir=rand()%2;
+            if(dir)
+                dir=3;
+            else
+                dir=2;
+        }
         if(!swRde && !swRab && !swRiz){
         dir=rand()%3+3;
         if(dir==5)
@@ -205,6 +219,20 @@ void cat::mover(int y, int x, QImage **map, int tam){
         if(!swRde && !swRar && swRiz){//si el raton esta a la izquierda
             dir=4;
         }//else
+        if(swRde && swRar){
+            dir=rand()%2;
+            if(dir)
+                dir=1;
+            else
+                dir=3;
+        }
+        if(swRar && swRiz){
+            dir=rand()%2;
+            if(dir)
+                dir=1;
+            else
+                dir=4;
+        }
         if(!swRde && !swRab && !swRiz){
             dir=rand()%3+3;
             if(dir==5)
@@ -221,6 +249,20 @@ void cat::mover(int y, int x, QImage **map, int tam){
         if(!swRde && !swRab && swRar){//si el raton esta arriba
             dir=1;
         }//else
+        if(swRde && swRab){
+            dir=rand()%2;
+            if(dir)
+                dir=3;
+            else
+                dir=2;
+        }
+        if(swRar && swRde){
+            dir=rand()%2;
+            if(dir)
+                dir=3;
+            else
+                dir=1;
+        }
         if(!swRde && !swRab && !swRiz){
             dir=rand()%3+1;
             }
@@ -235,6 +277,20 @@ void cat::mover(int y, int x, QImage **map, int tam){
         if(!swRiz && !swRab && swRar){//si el raton esta arriba
             dir=1;
         }//else
+        if(swRiz && swRab){
+            dir=rand()%2;
+            if(dir)
+                dir=4;
+            else
+                dir=2;
+        }
+        if(swRar && swRiz){
+            dir=rand()%2;
+            if(dir)
+                dir=4;
+            else
+                dir=1;
+        }
         if(!swRde && !swRab && !swRiz){
          dir=rand()%3+1;
         if(dir==3)
@@ -249,7 +305,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
 
     }
 
-
+    //cout<<"gato:"<<dir<<endl;
     //switch para moverse
     switch(dir){
 
