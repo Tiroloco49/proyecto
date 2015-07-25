@@ -9,7 +9,7 @@ using namespace std;
 class cat
 {
 public:
-	//ya supe que hacer nojoda y ahora el mundo es mio
+	//hola mundo
     cat();
     void mover(int y, int x,QImage **map,int tam);
     int xCat,yCat,raton;
