@@ -36,7 +36,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
 //si se consigue el raton, se prosigue a indicar direccion del movimiento
     if(swRiz && swRar){//esquina superior izquierda
         if((xCat-1==x && yCat-1==y) || (xCat-2==x && yCat-2==y)){
-            dir=rand()%1;
+            dir=rand()%2;
           if(dir)
               dir;
            else
@@ -51,7 +51,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
     if(swRiz && swRab){//esquina inferior izquierda
 
         if((xCat-1==x && yCat+1==y) || (xCat-2==x && yCat+2==y)){
-            dir=rand()%1;
+            dir=rand()%2;
           if(dir)
               dir=2;
            else
@@ -69,7 +69,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
 
 
         if((xCat+1==x && yCat-1==y) || (xCat+2==x && yCat-2==y)){
-            dir=rand()%1;
+            dir=rand()%2;
           if(dir)
               dir=1;
            else
@@ -84,7 +84,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
     if(swRde && swRab){//esquina inferior derecha
 
         if((xCat+1==x && yCat+1==y) || (xCat+2==x && yCat+2==y)){
-            dir=rand()%1;
+            dir=rand()%2;
           if(dir)
               dir=2;
            else
@@ -94,6 +94,18 @@ void cat::mover(int y, int x, QImage **map, int tam){
            dir=2;
         if(xCat+2==x && yCat+1==y)
            dir=3;
+    }else
+    if(swRab){//abajo
+        dir=2;
+    }else
+    if(swRar){//arriba
+        dir=1;
+    }else
+    if(swRde){//derecha
+        dir=3;
+    }else
+    if(swRiz){//izquierda
+        dir=3;
     }
 
 
@@ -109,7 +121,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
                 dir=2;
         else{//si esta diagonal
 
-            dir=rand()%1;
+            dir=rand()%2;
             if(dir)
                 dir=3;
             else
@@ -125,7 +137,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
                 dir=2;
     else{//si esta diagonal
 
-        dir=rand()%1;
+        dir=rand()%2;
         if(dir)
             dir=4;
         else
@@ -140,7 +152,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
          dir=1;
    else{//si esta diagonal
 
-        dir=rand()%1;
+        dir=rand()%2;
         if(dir)
             dir=4;
         else
@@ -157,7 +169,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
           dir=1;
    else{//si esta diagonal
 
-        dir=rand()%1;
+        dir=rand()%2;
         if(dir)
             dir=1;
         else
@@ -227,7 +239,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
         dir=rand()%4+1;
     }
 
-
+    cout<<"gato:"<<dir<<endl;
     //switch para moverse
     switch(dir){
 

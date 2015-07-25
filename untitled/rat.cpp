@@ -133,7 +133,7 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         }else
         if(diraux==3){
 
-          dir=rand()%1;
+          dir=rand()%2;
            if(dir)
                 dir=3;
             else
@@ -151,9 +151,9 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         }else
         if(diraux==4){
 
-          dir=rand()%1;
+          dir=rand()%2;
            if(dir)
-                dir=3;
+                dir=5;
             else
                 dir=7;
 
@@ -169,48 +169,85 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         }else
         if(diraux==1){
 
-          dir=rand()%1;
+          dir=rand()%2;
            if(dir)
                 dir=7;
             else
-                dir=5;
+                dir=1;
 
         }else
         if(diraux==7){
-            dir=5;
+            dir=1;
         }else
         dir=rand()%2+7;
     }else
     if(yRat==tam-1 && xRat==0){//esquina inferior izquierda
         if(diraux==8){//condicionales si esta entre el gato y la pared
-            dir=5;
+            dir=1;
         }else
         if(diraux==2){
 
-          dir=rand()%1;
+          dir=rand()%2;
            if(dir)
-                dir=8;
+                dir=1;
             else
-                dir=5;
+                dir=3;
 
         }else
         if(diraux==5){
-            dir=8;
+            dir=3;
         }else
         dir=rand()%3+1;
     }else
         //CRASHEA SI SE ENCUENTRA ACORRALADO
     if(yRat==0){//arriba
-        //falta poner las condiciones por si esta entre el gato y la pared
+        if(swGiz && !swGde && !swGab && !swGar){//izquierda
+            dir=rand()%3+3;
+        }else
+        if(swGiz && !swGde && swGab && !swGar){//inferior izquierda
+            dir=rand()%2+3;
+        }else
+        if(!swGiz && !swGde && swGab && !swGar){//abajo
+            dir=rand()%2;
+            if(dir)
+                dir=3;
+            else
+                dir=7;
+        }else
+        if(!swGiz && swGde && swGab && !swGar){//inferior derecho
+            dir=rand()%2+6;
+        }else
+        if(!swGiz && swGde && !swGab && !swGar){//derecha
+            dir=rand()%3+5;
+        }else
         dir=rand()%5+3;
     }else
     if(yRat==tam-1){//abajo
-        //falta poner las condiciones por si esta entre el gato y la pared
-        dir=rand()%1;
+        if(swGiz && !swGde && !swGab && !swGar){//izquierda
+            dir=rand()%3+3;
+        }else
+        if(swGiz && !swGde && swGab && !swGar){//superior izquierda
+            dir=rand()%2+3;
+        }else
+        if(!swGiz && !swGde && swGab && !swGar){//arriba
+            dir=rand()%2;
+            if(dir)
+                dir=3;
+            else
+                dir=7;
+        }else
+        if(!swGiz && swGde && swGab && !swGar){//superior derecho
+            dir=rand()%2+6;
+        }else
+        if(!swGiz && swGde && !swGab && !swGar){//derecha
+            dir=rand()%3+5;
+        }else{
+        dir=rand()%2;
         if(dir==0)
             dir=rand()%3+1;
         else
             dir=rand()%2+7;
+        }
     }else
     if(xRat==0){//izquierda
         //falta poner las condiciones por si esta entre el gato y la pared
@@ -222,7 +259,7 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     }
 
     //switch para moverse
-
+cout<<"raton:"<<dir<<" "<<diraux<<endl;
     switch(dir){
 
     case 1:
