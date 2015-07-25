@@ -128,6 +128,7 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     //para limites____________________________________________________________
     //si es esta en los limites del mapa
     if(yRat==0 && xRat==0){//esquina superior izquierda
+
         if(diraux==8){//condicionales si esta entre el gato y la pared
             dir=5;
         }else
@@ -143,9 +144,19 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(diraux==6){
             dir=3;
         }else
+        if(xRat+1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+            dir=3;
+        }else
+        if(xRat+1==xq && yRat+1==yq){
+            dir=4;
+        }else
+        if(xRat==xq && yRat+1==yq){
+            dir=5;
+        }else
         dir=rand()%3+3;
     }else
     if(yRat==0 && xRat==tam-1){//esquina superior derecha
+
         if(diraux==7){//condicionales si esta entre el gato y la pared
             dir=5;
         }else
@@ -161,9 +172,19 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(diraux==6){
             dir=7;
         }else
+            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=7;
+            }else
+            if(xRat-1==xq && yRat+1==yq){
+                dir=6;
+            }else
+            if(xRat==xq && yRat+1==yq){
+                dir=5;
+            }else
         dir=rand()%3+5;
     }else
     if(yRat==tam-1 && xRat==tam-1){//esquina inferior derecha
+
         if(diraux==5){//condicionales si esta entre el gato y la pared
             dir=7;
         }else
@@ -179,9 +200,19 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(diraux==7){
             dir=1;
         }else
+            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=7;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=8;
+            }else
+            if(xRat==xq && yRat-1==yq){
+                dir=1;
+            }else
         dir=rand()%2+7;
     }else
     if(yRat==tam-1 && xRat==0){//esquina inferior izquierda
+
         if(diraux==8){//condicionales si esta entre el gato y la pared
             dir=1;
         }else
@@ -197,10 +228,19 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(diraux==5){
             dir=3;
         }else
+            if(xRat+1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=3;
+            }else
+            if(xRat+1==xq && yRat-1==yq){
+                dir=2;
+            }else
+            if(xRat==xq && yRat-1==yq){
+                dir=1;
+            }else
         dir=rand()%3+1;
     }else
-        //CRASHEA SI SE ENCUENTRA ACORRALADO
     if(yRat==0){//arriba
+
         if(swGiz && !swGde && !swGab && !swGar){//izquierda
             dir=rand()%3+3;
         }else
@@ -220,9 +260,25 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(!swGiz && swGde && !swGab && !swGar){//derecha
             dir=rand()%3+5;
         }else
+            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=7;
+            }else
+            if(xRat-1==xq && yRat+1==yq){
+                dir=6;
+            }else
+            if(xRat==xq && yRat+1==yq){
+                dir=5;
+            }else
+            if(xRat+1==xq && yRat+1==yq){
+                dir=4;
+            }else
+            if(xRat-1==xq && yRat==yq){
+                dir=3;
+            }else
         dir=rand()%5+3;
     }else
     if(yRat==tam-1){//abajo
+
         if(swGiz && !swGde && !swGab && !swGar){//izquierda
             dir=rand()%3+1;
         }else
@@ -248,10 +304,26 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(dir==0)
             dir=rand()%3+1;
         else
+            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=7;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=8;
+            }else
+            if(xRat==xq && yRat-1==yq){
+                dir=1;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=2;
+            }else
+            if(xRat-1==xq && yRat==yq){
+                dir=3;
+            }else
             dir=rand()%2+7;
         }
     }else
     if(xRat==0){//izquierda
+
         if(swGiz && !swGde && !swGab && !swGar){//arriba
             dir=rand()%3+3;
         }else
@@ -271,9 +343,25 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         if(!swGiz && swGde && !swGab && !swGar){//abajo
             dir=rand()%3+1;
         }else
+            if(xRat+1==xq && yRat+1==yq){//condicionales si esta entre el queso y la pared
+                dir=4;
+            }else
+            if(xRat==xq && yRat+1==yq){
+                dir=5;
+            }else
+            if(xRat==xq && yRat-1==yq){
+                dir=1;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=2;
+            }else
+            if(xRat-1==xq && yRat==yq){
+                dir=3;
+            }else
          dir=rand()%5+1;
     }else
     if(xRat==tam-1){//derecha
+
         if(swGiz && !swGde && !swGab && !swGar){//arriba
             dir=rand()%3+5;
         }else
@@ -297,6 +385,21 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
             if(dir==9)
                 dir=1;
         }else
+            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=7;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=8;
+            }else
+            if(xRat==xq && yRat-1==yq){
+                dir=1;
+            }else
+            if(xRat==xq && yRat+1==yq){
+                dir=5;
+            }else
+            if(xRat-1==xq && yRat+1==yq){
+                dir=6;
+            }else
          dir=rand()%4+5;
     }
 

@@ -181,62 +181,72 @@ void cat::mover(int y, int x, QImage **map, int tam){
 
         if(swRde && !swRab && !swRiz){//si el raton esta a la derecha
             dir=3;
-        }else
+        }//else
         if(!swRde && swRab && !swRiz){//si el raton esta abajo
            dir=2;
-        }else
+        }//else
         if(!swRde && !swRab && swRiz){//si el raton esta a la izquierda
             dir=4;
-        }else
-        dir=rand()%2+3;
-
+        }//else
+        if(!swRde && !swRab && !swRiz){
+        dir=rand()%3+3;
+        if(dir==5)
+            dir=2;
+        }
     }else
     if(yCat==tam-1){
 
         if(swRde && !swRar && !swRiz){//si el raton esta a la derecha
             dir=3;
-        }else
+        }//else
         if(!swRde && swRar && !swRiz){//si el raton esta arriba
            dir=1;
-        }else
+        }//else
         if(!swRde && !swRar && swRiz){//si el raton esta a la izquierda
             dir=4;
-        }else
-        dir=rand()%3+1;
-        if(dir==2)
-            dir=4;
+        }//else
+        if(!swRde && !swRab && !swRiz){
+            dir=rand()%3+3;
+            if(dir==5)
+                dir=1;
+            }
     }else
     if(xCat==0){
         if(swRde && !swRab && !swRar){//si el raton esta a la derecha
             dir=3;
-        }else
+        }//else
         if(!swRde && swRab && !swRar){//si el raton esta abajo
            dir=2;
-        }else
+        }//else
         if(!swRde && !swRab && swRar){//si el raton esta arriba
             dir=1;
-        }else
-         dir=rand()%3+1;
+        }//else
+        if(!swRde && !swRab && !swRiz){
+            dir=rand()%3+1;
+            }
     }else
     if(xCat==tam-1){
         if(swRiz && !swRab && !swRar){//si el raton esta a la izquierda
             dir=4;
-        }else
+        }//else
         if(!swRiz && swRab && !swRar){//si el raton esta abajo
            dir=2;
-        }else
+        }//else
         if(!swRiz && !swRab && swRar){//si el raton esta arriba
             dir=1;
-        }else
+        }//else
+        if(!swRde && !swRab && !swRiz){
          dir=rand()%3+1;
         if(dir==3)
             dir=4;
+        }
     }
 
     //si el raton no es encontrado y la direcion es 0
     if(!dir){//______________________________________________________________
 
         dir=rand()%4+1;
+
     }
 
 
