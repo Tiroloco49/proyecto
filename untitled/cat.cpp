@@ -239,7 +239,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
         dir=rand()%4+1;
     }
 
-    cout<<"gato:"<<dir<<endl;
+
     //switch para moverse
     switch(dir){
 

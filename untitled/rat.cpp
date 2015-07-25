@@ -224,23 +224,25 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     }else
     if(yRat==tam-1){//abajo
         if(swGiz && !swGde && !swGab && !swGar){//izquierda
-            dir=rand()%3+3;
+            dir=rand()%3+1;
         }else
-        if(swGiz && !swGde && swGab && !swGar){//superior izquierda
-            dir=rand()%2+3;
+        if(swGiz && !swGde && !swGab && swGar){//superior izquierda
+            dir=rand()%2+2;
         }else
-        if(!swGiz && !swGde && swGab && !swGar){//arriba
+        if(!swGiz && !swGde && !swGab && swGar){//arriba
             dir=rand()%2;
             if(dir)
                 dir=3;
             else
                 dir=7;
         }else
-        if(!swGiz && swGde && swGab && !swGar){//superior derecho
-            dir=rand()%2+6;
+        if(!swGiz && swGde && !swGab && swGar){//superior derecho
+            dir=rand()%2+7;
         }else
         if(!swGiz && swGde && !swGab && !swGar){//derecha
-            dir=rand()%3+5;
+            dir=rand()%3+7;
+            if(dir==9)
+                dir=1;
         }else{
         dir=rand()%2;
         if(dir==0)
@@ -250,16 +252,56 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         }
     }else
     if(xRat==0){//izquierda
-        //falta poner las condiciones por si esta entre el gato y la pared
+        if(swGiz && !swGde && !swGab && !swGar){//arriba
+            dir=rand()%3+3;
+        }else
+        if(swGiz && !swGde && swGab && !swGar){//superior derecho
+            dir=rand()%2+3;
+        }else
+        if(!swGiz && !swGde && swGab && !swGar){//derecha
+            dir=rand()%2;
+            if(dir)
+                dir=1;
+            else
+                dir=5;
+        }else
+        if(!swGiz && swGde && swGab && !swGar){//inferior derecho
+            dir=rand()%2+1;
+        }else
+        if(!swGiz && swGde && !swGab && !swGar){//abajo
+            dir=rand()%3+1;
+        }else
          dir=rand()%5+1;
     }else
     if(xRat==tam-1){//derecha
-        //falta poner las condiciones por si esta entre el gato y la pared
+        if(swGiz && !swGde && !swGab && !swGar){//arriba
+            dir=rand()%3+5;
+        }else
+        if(swGiz && !swGde && swGab && !swGar){//superior izquierdo
+            dir=rand()%2+5;
+        }else
+        if(!swGiz && !swGde && swGab && !swGar){//izquierda
+            dir=rand()%2;
+            if(dir)
+                dir=1;
+            else
+                dir=5;
+        }else
+        if(!swGiz && swGde && swGab && !swGar){//inferior izquierdo
+            dir=rand()%2+8;
+            if(dir==9)
+                dir=1;
+        }else
+        if(!swGiz && swGde && !swGab && !swGar){//abajo
+            dir=rand()%3+7;
+            if(dir==9)
+                dir=1;
+        }else
          dir=rand()%4+5;
     }
 
     //switch para moverse
-cout<<"raton:"<<dir<<" "<<diraux<<endl;
+
     switch(dir){
 
     case 1:
@@ -302,7 +344,7 @@ cout<<"raton:"<<dir<<" "<<diraux<<endl;
 
     if(xRat==xq && yRat==yq){//si se come el queso
 
-        queso=1;
+        //queso=1;
     }
 
 
