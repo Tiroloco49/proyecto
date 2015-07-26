@@ -8,10 +8,10 @@ queso=0;
 
 void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     int swGiz=0,swGde=0,swGar=0,swGab=0,swQiz=0,swQde=0,swQar=0,swQab=0;
-    int dir=0,diraux,pared1=0,pared2=0,pared3=0,pared4=0,pared5=0,pared6=0,pared7=0,pared8=0;
+    int dir=0,pared1=0,pared2=0,pared3=0,pared4=0,pared5=0,pared6=0,pared7=0,pared8=0;
     srand(time(NULL));
 
-    //ubicando el queso dentro del rango del raton
+//ubicando el queso dentro del rango del raton
     if(xq<=xRat+10 && xq>=xRat-10 && yq<=yRat+10 && yq>=yRat-10){
 
         //IZQUIERDA
@@ -56,22 +56,29 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         }
 
     }
-    //paredes######################################################################
-
+//paredes######################################################################
+ if(yRat!=tam-1 && xRat!=tam-1)
     if(map[yRat+1][xRat+1].colorCount()==1)
         pared4=1;
+ if(yRat!=tam-1 && xRat!=0)
     if(map[yRat+1][xRat-1].colorCount()==1)
         pared6=1;
+ if(yRat!=0)
     if(map[yRat+1][xRat].colorCount()==1)
         pared5=1;
+ if(yRat!=0 && xRat!=tam-1)
     if(map[yRat-1][xRat+1].colorCount()==1)
         pared2=1;
+ if(yRat!=0 && xRat!=0)
     if(map[yRat-1][xRat-1].colorCount()==1)
         pared8=1;
+ if(yRat!=0)
     if(map[yRat-1][xRat].colorCount()==1)
         pared1=1;
+if(xRat!=tam-1)
     if(map[yRat][xRat+1].colorCount()==1)
         pared3=1;
+if(xRat!=0)
     if(map[yRat][xRat-1].colorCount()==1)
         pared7=1;
 
@@ -1028,24 +1035,190 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
          }
     }else
 
-    if(yRat==0){
+    if(yRat==0){//arriba
+
+                if(swGiz && !swGde && !swGab && !swGar){//izquierda
+                    dir=rand()%3+3;
+                }else
+                if(swGiz && !swGde && swGab && !swGar){//inferior izquierda
+                    dir=rand()%2+3;
+                }else
+                if(!swGiz && !swGde && swGab && !swGar){//abajo
+                    dir=rand()%2;
+                    if(dir)
+                        dir=3;
+                    else
+                        dir=7;
+                }else
+                if(!swGiz && swGde && swGab && !swGar){//inferior derecho
+                    dir=rand()%2+6;
+                }else
+                if(!swGiz && swGde && !swGab && !swGar){//derecha
+                    dir=rand()%3+5;
+                }else
+
+                    if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                        dir=7;
+                    }else
+                    if(xRat-1==xq && yRat+1==yq){
+                        dir=6;
+                    }else
+                    if(xRat==xq && yRat+1==yq){
+                        dir=5;
+                    }else
+                    if(xRat+1==xq && yRat+1==yq){
+                        dir=4;
+                    }else
+                    if(xRat-1==xq && yRat==yq){
+                        dir=3;
+                    }else
+                    dir=rand()%5+3;
 
     }else
 
-    if(yRat==tam-1){
+    if(yRat==tam-1){//abajo
+
+
+        if(swGiz && !swGde && !swGab && !swGar){//izquierda
+            dir=rand()%3+1;
+        }else
+        if(swGiz && !swGde && !swGab && swGar){//superior izquierda
+            dir=rand()%2+2;
+        }else
+        if(!swGiz && !swGde && !swGab && swGar){//arriba
+            dir=rand()%2;
+            if(dir)
+                dir=3;
+            else
+                dir=7;
+        }else
+        if(!swGiz && swGde && !swGab && swGar){//superior derecho
+            dir=rand()%2+7;
+        }else
+        if(!swGiz && swGde && !swGab && !swGar){//derecha
+            dir=rand()%3+7;
+            if(dir==9)
+                dir=1;
+        }else{
+            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=7;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=8;
+            }else
+            if(xRat==xq && yRat-1==yq){
+                dir=1;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=2;
+            }else
+            if(xRat-1==xq && yRat==yq){
+                dir=3;
+            }else
+            dir=rand()%5+7;
+            if(dir==9)
+                dir=1;
+            if(dir==10)
+                dir=2;
+            if(dir==11)
+                dir=3;
+        }
 
     }else
 
-    if(xRat==0){
+    if(xRat==0){//izquierda
+
+        if(!swGiz && !swGde && !swGab && swGar){//arriba
+                    dir=rand()%3+3;
+                }else
+                if(!swGiz && swGde && !swGab && swGar){//superior derecho
+                    dir=rand()%2+4;
+                }else
+                if(!swGiz && swGde && !swGab && !swGar){//derecha
+                    dir=rand()%2;
+                    if(dir)
+                        dir=1;
+                    else
+                        dir=5;
+                }else
+                if(!swGiz && swGde && swGab && !swGar){//inferior derecho
+                    dir=rand()%2+1;
+                }else
+                if(!swGiz && !swGde && swGab && !swGar){//abajo
+                    dir=rand()%3+1;
+                }else
+                    if(xRat+1==xq && yRat+1==yq){//condicionales si esta entre el queso y la pared
+                        dir=4;
+                    }else
+                    if(xRat==xq && yRat+1==yq){
+                        dir=5;
+                    }else
+                    if(xRat==xq && yRat-1==yq){
+                        dir=1;
+                    }else
+                    if(xRat-1==xq && yRat-1==yq){
+                        dir=2;
+                    }else
+                    if(xRat-1==xq && yRat==yq){
+                        dir=3;
+                    }else
+                 dir=rand()%5+1;
+
+
 
     }else
 
-    if(xRat==tam-1){
+    if(xRat==tam-1){//derecha
+
+
+        if(!swGiz && !swGde && !swGab && swGar){//arriba
+            dir=rand()%3+5;
+        }else
+        if(swGiz && !swGde && !swGab && swGar){//superior izquierdo
+            dir=rand()%2+5;
+        }else
+        if(swGiz && !swGde && !swGab && !swGar){//izquierda
+            dir=rand()%2;
+            if(dir)
+                dir=1;
+            else
+                dir=5;
+        }else
+        if(swGiz && !swGde && swGab && !swGar){//inferior izquierdo
+            dir=rand()%2+8;
+            if(dir==9)
+                dir=1;
+        }else
+        if(!swGiz && !swGde && swGab && !swGar){//abajo
+            dir=rand()%3+7;
+            if(dir==9)
+                dir=1;
+        }else
+            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
+                dir=7;
+            }else
+            if(xRat-1==xq && yRat-1==yq){
+                dir=8;
+            }else
+            if(xRat==xq && yRat-1==yq){
+                dir=1;
+            }else
+            if(xRat==xq && yRat+1==yq){
+                dir=5;
+            }else
+            if(xRat-1==xq && yRat+1==yq){
+                dir=6;
+            }else
+         dir=rand()%5+5;
+        if(dir==9)
+            dir=1;
+
+
 
     }
 
     //switch para moverse
-    //cout<<"raton:"<<dir<<endl;
+    cout<<"raton:"<<dir<<endl;
     switch(dir){
 
     case 1:
