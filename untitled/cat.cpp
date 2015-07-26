@@ -38,7 +38,7 @@ void cat::mover(int y, int x, QImage **map, int tam){
         if((xCat-1==x && yCat-1==y) || (xCat-2==x && yCat-2==y)){
             dir=rand()%2;
           if(dir)
-              dir;
+              dir=1;
            else
               dir=4;
         }

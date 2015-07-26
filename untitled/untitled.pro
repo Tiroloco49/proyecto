@@ -17,12 +17,18 @@ SOURCES += main.cpp\
     leer_mapa.cpp \
     cat.cpp \
     rat.cpp \
-    cheese.cpp
+    cheese.cpp \
+    pila.cpp \
+    nodo.cpp \
+    listadinamica.cpp
 
 HEADERS  += mainwindow.h \
     leer_mapa.h \
     cat.h \
     rat.h \
-    cheese.h
+    cheese.h \
+    pila.h \
+    nodo.h \
+    listadinamica.h
 
 FORMS    += mainwindow.ui

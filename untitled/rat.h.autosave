@@ -2,6 +2,7 @@
 #define RAT_H
 #include "qimage.h"
 #include "pila.h"
+#include "listadinamica.h"
 #include <iostream>
 #include <time.h>
 using namespace std;
@@ -13,6 +14,7 @@ public:
     void mover(int y, int x, int yq, int xq,QImage **map,int tam);
     void agregar();
     Pila pila;
+    ListaDinamica listad;
     int xRat,yRat;
     int queso;
     QImage layer;
