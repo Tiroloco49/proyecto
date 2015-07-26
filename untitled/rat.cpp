@@ -8,7 +8,7 @@ queso=0;
 
 void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
     int swGiz=0,swGde=0,swGar=0,swGab=0,swQiz=0,swQde=0,swQar=0,swQab=0;
-    int dir=0,diraux;
+    int dir=0,diraux,pared1=0,pared2=0,pared3=0,pared4=0,pared5=0,pared6=0,pared7=0,pared8=0;
     srand(time(NULL));
 
     //ubicando el queso dentro del rango del raton
@@ -56,353 +56,992 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
         }
 
     }
+    //paredes######################################################################
 
+    if(map[yRat+1][xRat+1].colorCount()==1)
+        pared4=1;
+    if(map[yRat+1][xRat-1].colorCount()==1)
+        pared6=1;
+    if(map[yRat+1][xRat].colorCount()==1)
+        pared5=1;
+    if(map[yRat-1][xRat+1].colorCount()==1)
+        pared2=1;
+    if(map[yRat-1][xRat-1].colorCount()==1)
+        pared8=1;
+    if(map[yRat-1][xRat].colorCount()==1)
+        pared1=1;
+    if(map[yRat][xRat+1].colorCount()==1)
+        pared3=1;
+    if(map[yRat][xRat-1].colorCount()==1)
+        pared7=1;
 
-    //para el queso___________________________________________________________
-    //si se consigue el queso, se indica la direccion en la que se movera
-    if(swQiz && swQar)//esquina superior izquierda
-        dir=8;
-    else
-    if(swQiz && swQab)//esquina inferior izquierda
-        dir=6;
-    else
-    if(swQde && swQar)//esquina superior derecha
-        dir=2;
-    else
-    if(swQde && swQab)//esquina inferior derecha
-        dir=4;
-    else
-    if(swQab)//abajo
-        dir=5;
-    else
-    if(swQar)//arriba
-        dir=1;
-    else
-    if(swQiz)//izquierda
-        dir=7;
-    else
-    if(swQde)//derecha
-        dir=3;
+//para el rato#####################################################################
+    if(swQiz && swQar){//esquina superior izquierda
 
-    //para el gato_________________________________________________-
-   // si se consige el gato se indica la direccion para escapar
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared5)
+            dir=5;
 
+    }else
+    if(swQiz && swQab){//esquina inferior izquierda
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared2)
+            dir=2;
+    }else
+    if(swQde && swQar){//esquina superior derecha
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared6)
+            dir=6;
+    }else
+    if(swQde && swQab){//esquina inferior derecha
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared8)
+            dir=8;
+    }else
+    if(swQab){//abajo
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared1)
+            dir=1;
+    }else
+    if(swQar){//arriba
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared5)
+            dir=5;
+    }else
+    if(swQiz){//izquierda
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared3)
+            dir=3;
+    }else
+    if(swQde){//derecha
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared7)
+            dir=7;
+    }
+
+ //para el gato##################################################################
     if(swGiz && swGar){//esquina superior izquierda
-        dir=rand()%5+2;
-        diraux=1;
+                if(!pared4)
+                    dir=4;
+                else
+                if(!pared5)
+                    dir=5;
+                else
+                if(!pared3)
+                    dir=3;
+                else
+                if(!pared6)
+                    dir=6;
+                else
+                if(!pared2)
+                    dir=2;
+                else
+                if(!pared7)
+                    dir=7;
+                else
+                if(!pared1)
+                    dir=1;
+                else
+                if(!pared8)
+                    dir=8;
     }else
     if(swGiz && swGab){//esquina inferior izquierda
-        dir=rand()%4+1;
-        diraux=4;
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared6)
+            dir=6;
     }else
     if(swGde && swGar){//esquina superior derecha
-        dir=rand()%5+4;
-        diraux=2;
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared2)
+            dir=2;
     }else
     if(swGde && swGab){//esquina inferior derecha
-        dir=rand()%4+6;
-        if(dir==9)
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared1)
             dir=1;
-        diraux=3;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared5)
+            dir=5;
     }else
     if(swGab){//abajo
-        dir=rand()%3+1;
-        diraux=6;
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared5)
+            dir=5;
     }else
     if(swGar){//arriba
-        dir=rand()%5+3;
-        diraux=5;
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared1)
+            dir=1;
     }else
     if(swGiz){//izquierda
-        dir=rand()%5+1;
-        diraux=7;
+        if(!pared3)
+            dir=3;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared7)
+            dir=7;
     }else
     if(swGde){//derecha
-        dir=rand()%4+5;
-        diraux=8;
+        if(!pared7)
+            dir=7;
+        else
+        if(!pared8)
+            dir=8;
+        else
+        if(!pared6)
+            dir=6;
+        else
+        if(!pared1)
+            dir=1;
+        else
+        if(!pared5)
+            dir=5;
+        else
+        if(!pared2)
+            dir=2;
+        else
+        if(!pared4)
+            dir=4;
+        else
+        if(!pared3)
+            dir=3;
     }
-    if(!dir){
 
-        dir=rand()%8+1;
-    }
+ //para limites gato y queso###################################################
 
-
-    //para limites____________________________________________________________
-    //si es esta en los limites del mapa
     if(yRat==0 && xRat==0){//esquina superior izquierda
 
-        if(diraux==8){//condicionales si esta entre el gato y la pared
-            dir=5;
-        }else
-        if(diraux==3){
+        if(pared3 && !pared4 && !pared5){//######################
+            if(swGab && swGde)
+                dir=5;
+            else
+            if(swGab && !swGde)
+                dir=4;
+            else
+            if(!swGab && !swGde){
+                if(xRat+1==xq && yRat+1==yq)
+                    dir=4;
+                else
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                dir=rand()%2+4;
+            }
 
-          dir=rand()%2;
-           if(dir)
+        }else
+        if(!pared3 && pared4 && !pared5){//#########################
+            if(!swGab && swGde)
+                dir=5;
+            else
+            if(swGab && !swGde)
                 dir=3;
             else
+            if(!swGab && !swGde){
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=3;
+                else
+                    dir=5;
+                }
+            }
+
+        }else
+        if(!pared3 && !pared4 && pared5){//############################
+            if(swGab && swGde)
+                dir=3;
+            else
+            if(!swGab && swGde)
+                dir=4;
+            else
+            if(!swGab && !swGde){
+                if(xRat+1==xq && yRat+1==yq)
+                    dir=4;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2+3;
+                }
+            }
+        }else
+        if(pared3 && pared4 && !pared5){//##############################
+            if(swGab)
+                dir=0;
+            else
+            if(!swGab)
                 dir=5;
 
         }else
-        if(diraux==6){
-            dir=3;
+        if(pared3 && !pared4 && pared5){//###############################
+            if(swGab && swGde)
+                dir=0;
+            else
+            if(!swGab && !swGde)
+                dir=4;
         }else
-        if(xRat+1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
-            dir=3;
+        if(!pared3 && pared4 && pared5){//################################
+
+            if(swGde)
+                dir=0;
+            else
+            if(!swGde)
+                dir=3;
         }else
-        if(xRat+1==xq && yRat+1==yq){
-            dir=4;
-        }else
-        if(xRat==xq && yRat+1==yq){
-            dir=5;
-        }else
-        dir=rand()%3+3;
+        if(!pared3 && !pared4 && !pared5){//################################
+            if(!swGab && swGde){
+                if(xRat+1==xq && yRat+1==yq)
+                    dir=4;
+                else
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                dir=rand()%2+4;
+            }else
+            if(swGab && swGde){
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=3;
+                else
+                    dir=5;
+                }
+
+            }else
+            if(swGab && !swGde){
+                if(xRat+1==xq && yRat+1==yq)
+                    dir=4;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2+3;
+                }
+
+            }else
+            if(!swGab && !swGde){
+                if(xRat+1==xq && yRat+1==yq)
+                    dir=4;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                dir=rand()%3+3;
+                }
+         }
     }else
+
     if(yRat==0 && xRat==tam-1){//esquina superior derecha
 
-        if(diraux==7){//condicionales si esta entre el gato y la pared
-            dir=5;
-        }else
-        if(diraux==4){
-
-          dir=rand()%2;
-           if(dir)
+        if(pared7 && !pared6 && !pared5){//######################
+            if(swGab && swGiz)
                 dir=5;
             else
-                dir=7;
+            if(swGab && !swGiz)
+                dir=6;
+            else
+            if(!swGab && !swGiz){
+                if(xRat-1==xq && yRat+1==yq)
+                    dir=6;
+                else
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                dir=rand()%2+5;
+            }
 
         }else
-        if(diraux==6){
-            dir=7;
-        }else
-            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
-                dir=7;
-            }else
-            if(xRat-1==xq && yRat+1==yq){
-                dir=6;
-            }else
-            if(xRat==xq && yRat+1==yq){
+        if(!pared7 && pared6 && !pared5){//#########################
+            if(!swGab && swGiz)
                 dir=5;
+            else
+            if(swGab && !swGiz)
+                dir=7;
+            else
+            if(!swGab && !swGiz){
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=7;
+                else
+                    dir=5;
+                }
+            }
+
+        }else
+        if(!pared7 && !pared6 && pared5){//############################
+            if(swGab && swGiz)
+                dir=7;
+            else
+            if(!swGab && swGiz)
+                dir=6;
+            else
+            if(!swGab && !swGiz){
+                if(xRat-1==xq && yRat+1==yq)
+                    dir=6;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2+6;
+                }
+            }
+        }else
+        if(pared7 && pared6 && !pared5){//##############################
+            if(swGab)
+                dir=0;
+            else
+            if(!swGab)
+                dir=5;
+
+        }else
+        if(pared7 && !pared6 && pared5){//###############################
+            if(swGab && swGiz)
+                dir=0;
+            else
+            if(!swGab && !swGiz)
+                dir=6;
+        }else
+        if(!pared7 && pared6 && pared5){//################################
+
+            if(swGiz)
+                dir=0;
+            else
+            if(!swGiz)
+                dir=7;
+        }else
+        if(!pared7 && !pared6 && !pared5){//################################
+            if(!swGab && swGiz){
+                if(xRat-1==xq && yRat+1==yq)
+                    dir=6;
+                else
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                dir=rand()%2+5;
             }else
-        dir=rand()%3+5;
+            if(swGab && swGiz){
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=7;
+                else
+                    dir=5;
+                }
+
+            }else
+            if(swGab && !swGiz){
+                if(xRat-1==xq && yRat+1==yq)
+                    dir=6;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2+6;
+                }
+
+            }else
+            if(!swGab && !swGde){
+                if(xRat-1==xq && yRat+1==yq)
+                    dir=6;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else
+                if(xRat==xq && yRat+1==yq)
+                    dir=5;
+                else
+                dir=rand()%3+5;
+                }
+         }
     }else
+
     if(yRat==tam-1 && xRat==tam-1){//esquina inferior derecha
 
-        if(diraux==5){//condicionales si esta entre el gato y la pared
-            dir=7;
-        }else
-        if(diraux==1){
-
-          dir=rand()%2;
-           if(dir)
-                dir=7;
-            else
+        if(pared7 && !pared8 && !pared1){//######################
+            if(swGar && swGiz)
                 dir=1;
-
-        }else
-        if(diraux==7){
-            dir=1;
-        }else
-            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
-                dir=7;
-            }else
-            if(xRat-1==xq && yRat-1==yq){
+            else
+            if(swGar && !swGiz)
                 dir=8;
-            }else
-            if(xRat==xq && yRat-1==yq){
-                dir=1;
-            }else
-        dir=rand()%2+7;
-    }else
-    if(yRat==tam-1 && xRat==0){//esquina inferior izquierda
+            else
+            if(!swGar && !swGiz){
+                if(xRat-1==xq && yRat-1==yq)
+                    dir=8;
+                else
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                dir=rand()%2;
+                if(!dir)
+                    dir=8;
+            }
 
-        if(diraux==8){//condicionales si esta entre el gato y la pared
-            dir=1;
         }else
-        if(diraux==2){
-
-          dir=rand()%2;
-           if(dir)
+        if(!pared7 && pared8 && !pared1){//#########################
+            if(!swGar && swGiz)
                 dir=1;
             else
-                dir=3;
-
-        }else
-        if(diraux==5){
-            dir=3;
-        }else
-            if(xRat+1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
-                dir=3;
-            }else
-            if(xRat+1==xq && yRat-1==yq){
-                dir=2;
-            }else
-            if(xRat==xq && yRat-1==yq){
-                dir=1;
-            }else
-        dir=rand()%3+1;
-    }else
-    if(yRat==0){//arriba
-
-        if(swGiz && !swGde && !swGab && !swGar){//izquierda
-            dir=rand()%3+3;
-        }else
-        if(swGiz && !swGde && swGab && !swGar){//inferior izquierda
-            dir=rand()%2+3;
-        }else
-        if(!swGiz && !swGde && swGab && !swGar){//abajo
-            dir=rand()%2;
-            if(dir)
-                dir=3;
+            if(swGar && !swGiz)
+                dir=7;
             else
-                dir=7;
-        }else
-        if(!swGiz && swGde && swGab && !swGar){//inferior derecho
-            dir=rand()%2+6;
-        }else
-        if(!swGiz && swGde && !swGab && !swGar){//derecha
-            dir=rand()%3+5;
-        }else
-            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
-                dir=7;
-            }else
-            if(xRat-1==xq && yRat+1==yq){
-                dir=6;
-            }else
-            if(xRat==xq && yRat+1==yq){
-                dir=5;
-            }else
-            if(xRat+1==xq && yRat+1==yq){
-                dir=4;
-            }else
-            if(xRat-1==xq && yRat==yq){
-                dir=3;
-            }else
-        dir=rand()%5+3;
-    }else
-    if(yRat==tam-1){//abajo
+            if(!swGar && !swGiz){
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=7;
+                else
+                    dir=1;
+                }
+            }
 
-        if(swGiz && !swGde && !swGab && !swGar){//izquierda
-            dir=rand()%3+1;
         }else
-        if(swGiz && !swGde && !swGab && swGar){//superior izquierda
-            dir=rand()%2+2;
-        }else
-        if(!swGiz && !swGde && !swGab && swGar){//arriba
-            dir=rand()%2;
-            if(dir)
-                dir=3;
+        if(!pared7 && !pared8 && pared1){//############################
+            if(swGar && swGiz)
+                dir=7;
             else
-                dir=7;
-        }else
-        if(!swGiz && swGde && !swGab && swGar){//superior derecho
-            dir=rand()%2+7;
-        }else
-        if(!swGiz && swGde && !swGab && !swGar){//derecha
-            dir=rand()%3+7;
-            if(dir==9)
-                dir=1;
-        }else{
-        dir=rand()%2;
-        if(dir==0)
-            dir=rand()%3+1;
-        else
-            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
-                dir=7;
-            }else
-            if(xRat-1==xq && yRat-1==yq){
+            if(!swGar && swGiz)
                 dir=8;
-            }else
-            if(xRat==xq && yRat-1==yq){
-                dir=1;
-            }else
-            if(xRat-1==xq && yRat-1==yq){
-                dir=2;
-            }else
-            if(xRat-1==xq && yRat==yq){
-                dir=3;
-            }else
-            dir=rand()%2+7;
-        }
-    }else
-    if(xRat==0){//izquierda
-
-        if(!swGiz && !swGde && !swGab && swGar){//arriba
-            dir=rand()%3+3;
-        }else
-        if(!swGiz && swGde && !swGab && swGar){//superior derecho
-            dir=rand()%2+4;
-        }else
-        if(!swGiz && swGde && !swGab && !swGar){//derecha
-            dir=rand()%2;
-            if(dir)
-                dir=1;
             else
-                dir=5;
+            if(!swGar && !swGiz){
+                if(xRat-1==xq && yRat-1==yq)
+                    dir=8;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2+7;
+                }
+            }
         }else
-        if(!swGiz && swGde && swGab && !swGar){//inferior derecho
-            dir=rand()%2+1;
-        }else
-        if(!swGiz && !swGde && swGab && !swGar){//abajo
-            dir=rand()%3+1;
-        }else
-            if(xRat+1==xq && yRat+1==yq){//condicionales si esta entre el queso y la pared
-                dir=4;
-            }else
-            if(xRat==xq && yRat+1==yq){
-                dir=5;
-            }else
-            if(xRat==xq && yRat-1==yq){
-                dir=1;
-            }else
-            if(xRat-1==xq && yRat-1==yq){
-                dir=2;
-            }else
-            if(xRat-1==xq && yRat==yq){
-                dir=3;
-            }else
-         dir=rand()%5+1;
-    }else
-    if(xRat==tam-1){//derecha
-
-        if(!swGiz && !swGde && !swGab && swGar){//arriba
-            dir=rand()%3+5;
-        }else
-        if(swGiz && !swGde && !swGab && swGar){//superior izquierdo
-            dir=rand()%2+5;
-        }else
-        if(swGiz && !swGde && !swGab && !swGar){//izquierda
-            dir=rand()%2;
-            if(dir)
-                dir=1;
+        if(pared7 && pared8 && !pared1){//##############################
+            if(swGar)
+                dir=0;
             else
-                dir=5;
-        }else
-        if(swGiz && !swGde && swGab && !swGar){//inferior izquierdo
-            dir=rand()%2+8;
-            if(dir==9)
+            if(!swGar)
                 dir=1;
+
         }else
-        if(!swGiz && !swGde && swGab && !swGar){//abajo
-            dir=rand()%3+7;
-            if(dir==9)
-                dir=1;
-        }else
-            if(xRat-1==xq && yRat==yq){//condicionales si esta entre el queso y la pared
-                dir=7;
-            }else
-            if(xRat-1==xq && yRat-1==yq){
+        if(pared7 && !pared8 && pared1){//###############################
+            if(swGar && swGiz)
+                dir=0;
+            else
+            if(!swGar && !swGiz)
                 dir=8;
+        }else
+        if(!pared7 && pared8 && pared1){//################################
+
+            if(swGiz)
+                dir=0;
+            else
+            if(!swGiz)
+                dir=7;
+        }else
+        if(!pared7 && !pared8 && !pared1){//################################
+            if(!swGar && swGiz){
+                if(xRat-1==xq && yRat-1==yq)
+                    dir=8;
+                else
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                dir=rand()%2+5;
             }else
-            if(xRat==xq && yRat-1==yq){
+            if(swGar && swGiz){
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=7;
+                else
+                    dir=1;
+                }
+
+            }else
+            if(swGar && !swGiz){
+                if(xRat-1==xq && yRat-1==yq)
+                    dir=8;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else{
+                dir=rand()%2+7;
+                }
+
+            }else
+            if(!swGar && !swGde){
+                if(xRat-1==xq && yRat-1==yq)
+                    dir=8;
+                else
+                if(xRat-1==xq && yRat==yq)
+                    dir=7;
+                else
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else{
+                dir=rand()%3+7;
+                if(dir==9)
+                    dir=1;
+                }
+             }
+         }
+    }else
+
+    if(yRat==tam+1 && xRat==0){//esquina inferior izquierda
+
+        if(pared3 && !pared2 && !pared1){//######################
+            if(swGar && swGde)
                 dir=1;
+            else
+            if(swGar && !swGde)
+                dir=2;
+            else
+            if(!swGar && !swGde){
+                if(xRat+1==xq && yRat-1==yq)
+                    dir=2;
+                else
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                dir=rand()%2+2;
+            }
+
+        }else
+        if(!pared3 && pared2 && !pared1){//#########################
+            if(!swGar && swGde)
+                dir=1;
+            else
+            if(swGar && !swGde)
+                dir=3;
+            else
+            if(!swGar && !swGde){
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=3;
+                else
+                    dir=1;
+                }
+            }
+
+        }else
+        if(!pared3 && !pared2 && pared1){//############################
+            if(swGar && swGde)
+                dir=3;
+            else
+            if(!swGar && swGde)
+                dir=2;
+            else
+            if(!swGar && !swGde){
+                if(xRat+1==xq && yRat-1==yq)
+                    dir=2;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2+2;
+                }
+            }
+        }else
+        if(pared3 && pared2 && !pared1){//##############################
+            if(swGar)
+                dir=0;
+            else
+            if(!swGab)
+                dir=1;
+
+        }else
+        if(pared3 && !pared2 && pared1){//###############################
+            if(swGar && swGde)
+                dir=0;
+            else
+            if(!swGar && !swGde)
+                dir=2;
+        }else
+        if(!pared3 && pared2 && pared1){//################################
+
+            if(swGde)
+                dir=0;
+            else
+            if(!swGde)
+                dir=3;
+        }else
+        if(!pared3 && !pared2 && !pared1){//################################
+            if(!swGar && swGde){
+                if(xRat+1==xq && yRat-1==yq)
+                    dir=2;
+                else
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                dir=rand()%2+1;
             }else
-            if(xRat==xq && yRat+1==yq){
-                dir=5;
+            if(swGar && swGde){
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2;
+                if(dir)
+                    dir=3;
+                else
+                    dir=1;
+                }
+
             }else
-            if(xRat-1==xq && yRat+1==yq){
-                dir=6;
+            if(swGar && !swGde){
+                if(xRat+1==xq && yRat-1==yq)
+                    dir=2;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else{
+                dir=rand()%2+2;
+                }
+
             }else
-         dir=rand()%4+5;
+            if(!swGar && !swGde){
+                if(xRat+1==xq && yRat-1==yq)
+                    dir=2;
+                else
+                if(xRat+1==xq && yRat==yq)
+                    dir=3;
+                else
+                if(xRat==xq && yRat-1==yq)
+                    dir=1;
+                else
+                dir=rand()%3+1;
+                }
+         }
+    }else
+
+    if(yRat==0){
+
+    }else
+
+    if(yRat==tam-1){
+
+    }else
+
+    if(xRat==0){
+
+    }else
+
+    if(xRat==tam-1){
+
     }
 
     //switch para moverse
@@ -449,7 +1088,7 @@ void rat::mover(int y, int x, int yq, int xq, QImage **map, int tam){
 
     if(xRat==xq && yRat==yq){//si se come el queso
 
-        queso=1;
+        //queso=1;
     }
 
 
